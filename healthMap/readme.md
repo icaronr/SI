@@ -10,7 +10,7 @@ abir esse link(popup);
 do popup recuperar a section com id `alert`.
 de `alert` recuperar o link contido em `article`.
 exemplo:
-
+````html
 <section id="alert">
     <h1>
         Experts commend India for maintaining polio-free status - Clipper28 (satire) (press release) (blog) - <img class="f" src="./images/feeds/g.png" title="Google News" alt="Google News"> - 06/13/2018    </h1>
@@ -23,7 +23,8 @@ exemplo:
             <p class="aside">India | Polio | Humans<br></p>
         </article>
 
-    </section>
+</section>
+````
 Título da notícia:
 Recuperar o h1 depois de acessar a notícia
 Doença:
