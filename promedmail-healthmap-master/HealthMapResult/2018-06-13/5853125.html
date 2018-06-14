@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!--[if lte IE 7]> <html class="ie7"> <![endif]-->
+<!--[if IE 8]>     <html class="ie8"> <![endif]-->
+<!--[if IE 9]>     <html class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang = "en">             <!--<![endif]-->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta property="og:image" content="http://healthmap.org/images/3.0/mainlogo.png" />
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/font-awesome-ie7.min.css">
+<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" />
+<script src="js/hm.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquerymigrate.js"></script>
+<script src="js/jquery_ui.js"></script>
+<script src="js/jquery.tools.min.js"></script> 
+<script src="js/fancybox/jquery.fancybox.pack.js"></script>
+<title>Malaria: Is the disease on the rise again? Which countries are most at risk? - Express.co.uk</title>
+<link rel="stylesheet" href="css/ai.css?e" />
+<link rel="stylesheet" href="css/fonts.css">
+
+<script>
+
+// add HTML5 support to IE
+document.createElement('header');
+document.createElement('footer');
+document.createElement('section');
+document.createElement('aside');
+document.createElement('nav');
+document.createElement('article');
+
+var hmu_id = '';
+
+$(function() {
+    var score = 4;
+    var numvotes = 1;
+
+    // translations
+    var translated_title = '';
+    var translated_text = '';
+    if(translated_title) {
+        $('#translated_title').html('<img src="gt" /> ' + translated_title);
+    }
+    if(translated_text && translated_text != 0) {
+        $('#translated_text').html('<img src="gt" /> ' + translated_text);
+    }
+
+    for (var i=1; i<=score; i++) {
+        $('#score'+i).addClass('selected');
+    }
+
+    // ratings
+    if(!hmu_id) {
+        $("span.icon-star, #loginlink").click(function() {
+            var opener = parent.location.href;
+            var folders = opener.split("/");
+            var referrer = folders[folders.length-2];
+            parent.location.href = "forms/login.html#"+referrer;
+        });
+    } else {
+        $("span.icon-star").click(function() {
+            var rating = this.id;
+            yourrating = rating.replace("score","");
+            var fdata = new Object();
+            fdata['alert_id'] = '5853125';
+            fdata['rating'] = yourrating;
+            $.ajax({ type: "POST", url: "submitComment.php", dataType: 'json', data: fdata,
+                success: function(resp) {
+                    if(resp['status'] == "error") {
+                        alert("You must log on to HealthMap to use this functionality.");
+                        return false;
+                    }
+                    //FIXME: num votes shouldn't increment every time same person clicks
+                    //numvotes = numvotes + 1;
+                    //$('#votes2').text(numvotes+' votes');
+                    // update stars to be your vote
+                    for (var i=1; i<=5; i++) {
+                        $('#score'+i).removeClass('selected');
+                        if(i <= yourrating) {
+                            $('#score'+i).addClass('selected');
+                        }
+                    }
+                }
+            }) 
+            return false;
+        });
+    }
+
+    // comments
+    $('#comment_form').submit(function() {
+        var fdata = new Object();
+        fdata['comment'] = $('#thecomment').val();
+        fdata['alert_id'] = '5853125';
+        $.ajax({ type: "POST", url: "submitComment.php", dataType: 'json', data: fdata,
+            success: function(resp) {
+                $('#comments').append(resp['formatted_comment']);
+            }
+        }) 
+        return false;
+    }); 
+
+});
+
+//share
+/*function add_this(loc, service) {
+    window.open("http://api.addthis.com/oexchange/0.8/forward/"+service+"/offer?url="+loc);
+} 
+*/
+</script>
+<!--
+/* @license
+ * MyFonts Webfont Build ID 2315633, 2012-06-26T13:54:55-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Museo Sans 700 by exljbris
+ * URL: http://www.myfonts.com/fonts/exljbris/museo-sans/700/
+ * Copyright: Copyright (c) 2008 by Jos Buivenga. All rights reserved.
+ * Licensed pageviews: 10,000
+ * 
+ * Webfont: Museo Sans 300 by exljbris
+ * URL: http://www.myfonts.com/fonts/exljbris/museo-sans/300/
+ * Copyright: Copyright (c) 2008 by Jos Buivenga. All rights reserved.
+ * Licensed pageviews: unspecified
+ * 
+ * Webfont: Museo Sans 500 by exljbris
+ * URL: http://www.myfonts.com/fonts/exljbris/museo-sans/500/
+ * Copyright: Copyright (c) 2008 by Jos Buivenga. All rights reserved.
+ * Licensed pageviews: unspecified
+ * 
+ * Webfont: Museo Sans 100 by exljbris
+ * URL: http://www.myfonts.com/fonts/exljbris/museo-sans/100/
+ * Copyright: Copyright (c) 2008 by Jos Buivenga. All rights reserved.
+ * Licensed pageviews: unspecified
+ * 
+ * Webfont: Museo Slab 100 by exljbris
+ * URL: http://www.myfonts.com/fonts/exljbris/museo-slab/100/
+ * Copyright: Copyright (c) 2009 by Jos Buivenga. All rights reserved.
+ * Licensed pageviews: unspecified
+ * 
+ * Webfont: Museo Slab 700 by exljbris
+ * URL: http://www.myfonts.com/fonts/exljbris/museo-slab/700/
+ * Copyright: Copyright (c) 2009 by Jos Buivenga. All rights reserved.
+ * Licensed pageviews: unspecified
+ * 
+ * Webfont: Museo Slab 300 by exljbris
+ * URL: http://www.myfonts.com/fonts/exljbris/museo-slab/300/
+ * Copyright: Copyright (c) 2009 by Jos Buivenga. All rights reserved.
+ * Licensed pageviews: unspecified
+ * 
+ * Webfont: Museo Slab 500 by exljbris
+ * URL: http://www.myfonts.com/fonts/exljbris/museo-slab/500/
+ * Copyright: Copyright (c) 2009 by Jos Buivenga. All rights reserved.
+ * Licensed pageviews: unspecified
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2315633
+ * 
+ * © 2012 Bitstream Inc
+*/
+
+-->
+
+</head>
+
+<body class="fb">
+    
+    <section id="alert">
+    <h1>
+        Malaria: Is the disease on the rise again? Which countries are most at risk? - Express.co.uk - <img class="f" src="./images/feeds/g.png" title="Google News" alt="Google News" /> - 06/12/2018    </h1>
+                <aside>
+        Summary
+        </aside>
+        <article>
+            <p>Malaria: Is the disease on the rise again? Which countries are most at risk?   Growing resistance to sprays and drugs that combat the mosquito transmitting the disease and parasite that cause it is partly to blame for the increase in cases and deaths. WHO figures show that in 2010 there were 216 million cases of malaria with 655 ... <a href="ln.php?5853125" target="_blank">view full article</a></p>
+            <div id="translated_text"></div>
+            <p class="aside">United Kingdom | Malaria | Humans<br /></p>
+        </article>
+
+    </section>
+       
+    <section id="share">
+        <aside>Share</aside>        
+<span class='shareicon st_facebook_custom' displayText='' st_url='http://healthmap.org/alert/5853125'></span>
+<span class='shareicon st_twitter_custom' displayText='' st_via='HealthMap' st_url='http://healthmap.org/alert/5853125'></span>
+<span class='shareicon st_googleplus_custom' displayText='' st_url='http://healthmap.org/alert/5853125'></span>
+<span class='shareicon st_email_custom' displayText='' st_url='http://healthmap.org/alert/5853125'></span>
+
+    </section>
+ 
+    <section id="rating">
+        <aside>Rate</aside>        
+        <span class="rating">
+            <span id="score5" class="icon-star"></span>
+            <span id="score4" class="icon-star"></span>
+            <span id="score3" class="icon-star"></span>
+            <span id="score2" class="icon-star"></span>
+            <span id="score1" class="icon-star"></span>
+        </span>
+            <!-- <span id="votes2" class="votes">1 vote</span> -->
+    </section>
+
+    <section id="comment">
+        <header>Comment</header>
+                <a href="javascript:;" id="loginlink">Login</a> to HealthMap to comment on this post.
+                
+        <div id="comments">
+                    </div>
+    </section>
+        
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">
+    stLight.options({
+        publisher: "684b521a-5e80-428b-ba25-e9ba8906f451", 
+        doNotHash: false, 
+        doNotCopy: false, 
+        hashAddressBar: false,
+        onhover: false,
+        popup: 'true'
+    });
+</script>
+
+</body>
+</html>
