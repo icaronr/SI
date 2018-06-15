@@ -6,10 +6,11 @@ import os
 
 def scanfolder():
     lista = []
-    for path, dirs, files in os.walk('./'):
-        for f in files:
-            if f.endswith('.xlsx'):
-                lista.append(f)
+    #for path, dirs, files in os.walk('./'):
+    files = [f for f in os.listdir('.') if os.path.isfile(f)]
+    for f in files:
+        if f.endswith('.xlsx'):
+            lista.append(f)
     return lista
 #lê uma planilha e devolve uma lista com os termos de busca
 listaTermos = manipulador.carregaBusca()
@@ -23,3 +24,4 @@ planilhas = scanfolder()
 # faz o merge das planilhas
 manipulador.mergePlanilhas(planilhas)
 
+manipulador.limpaPasta()

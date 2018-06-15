@@ -3,7 +3,8 @@
 bibliotecas python utilizadas:
 -> pandas - `pip install pandas` - https://www.dataquest.io/blog/excel-and-pandas/
 -> requests - `pip install requests`
-
+-> xlwt - `pip install xlwt`
+-> xlrd - `pip install xlrd`
 
 Falta:
 - Fazer a planilha das doenças com todas as tags para classificar
